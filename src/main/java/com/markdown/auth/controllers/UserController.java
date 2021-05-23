@@ -6,6 +6,7 @@ import com.markdown.auth.dtos.UserLoginDTO;
 import com.markdown.auth.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -35,6 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/info/{userID}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public UserInfoDTO getUSerInfo(@PathVariable String userID){
 
         System.out.println("Get info of user"+ userID);
