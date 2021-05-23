@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 
-@Profile({"dev","test"})
+@Profile({"dev", "test"})
 @Component
 public class initializeTestData {
 
@@ -32,7 +32,7 @@ public class initializeTestData {
     TokenService tokenService;
 
     @EventListener
-    public void appReady(ApplicationReadyEvent event){
+    public void appReady(ApplicationReadyEvent event) {
 
         addRoles();
         addUsers();
@@ -75,10 +75,6 @@ public class initializeTestData {
         markDownUserModel2.setDisplayName("userDisplayName");
 
         userDAO.save(markDownUserModel2);
-
-
-
-
 
 
     }

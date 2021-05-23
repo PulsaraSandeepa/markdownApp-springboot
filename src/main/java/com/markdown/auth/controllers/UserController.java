@@ -20,9 +20,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//create user
+    //create user
     @PostMapping("/create")
-    public UserInfoDTO createUser(@RequestBody UserInfoDTO userInfoDTO){
+    public UserInfoDTO createUser(@RequestBody UserInfoDTO userInfoDTO) {
         checkNotNull(userInfoDTO);
 
         System.out.println(userInfoDTO.getDisplayName());
@@ -37,33 +37,32 @@ public class UserController {
 
     @GetMapping("/info/{userID}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public UserInfoDTO getUSerInfo(@PathVariable String userID){
+    public UserInfoDTO getUSerInfo(@PathVariable String userID) {
 
-        System.out.println("Get info of user"+ userID);
+        System.out.println("Get info of user" + userID);
 
         // TODO : add service to handle logic
         return userService.retrieveUserInfo(userID);
     }
-//login user
-@PostMapping("/login")
-public UserInfoDTO loginUser(@RequestBody UserLoginDTO userLoginDTO){
-    checkNotNull(userLoginDTO);
 
-    System.out.println(userLoginDTO.getUsername());
-    System.out.println(userLoginDTO.getPassword());
+    //login user
+    @PostMapping("/login")
+    public UserInfoDTO loginUser(@RequestBody UserLoginDTO userLoginDTO) {
+        checkNotNull(userLoginDTO);
+
+        System.out.println(userLoginDTO.getUsername());
+        System.out.println(userLoginDTO.getPassword());
 
 
-    // TODO : add service to handle logic
-    return userService.loginUser(userLoginDTO);
+        // TODO : add service to handle logic
+        return userService.loginUser(userLoginDTO);
 
-}
-
+    }
 
 
 //delete a user
 
     //modify a user
-
 
 
 }

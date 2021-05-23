@@ -14,7 +14,7 @@ public class MarkDownRoleModel extends GenericModel {
 
     private String role;
 
-    public MarkDownRoleModel(){
+    public MarkDownRoleModel() {
         super();
     }
 }

@@ -14,7 +14,7 @@ import static java.util.Objects.isNull;
 
 //import the getters and setters
 @Data
-public class GenericModel implements Serializable , Persistable<String> {
+public class GenericModel implements Serializable, Persistable<String> {
 
     @Id
     private String id;
@@ -25,7 +25,7 @@ public class GenericModel implements Serializable , Persistable<String> {
     @LastModifiedDate
     private Date updatedAt;
 
-    public GenericModel(){
+    public GenericModel() {
         this.id = UUID.randomUUID().toString();
     }
 

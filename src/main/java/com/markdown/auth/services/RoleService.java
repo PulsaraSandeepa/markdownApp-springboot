@@ -11,5 +11,4 @@ public interface RoleService {
     RoleDTO roleInfo(String roleId);
 
 
-
 }

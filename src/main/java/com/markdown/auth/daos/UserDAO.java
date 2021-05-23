@@ -6,11 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+
 @Repository
-public interface UserDAO extends MongoRepository<MarkDownUserModel ,String> {
+public interface UserDAO extends MongoRepository<MarkDownUserModel, String> {
 
     Optional<MarkDownUserModel> findByUsername(String username);
+
     Optional<MarkDownUserModel> findByJwtToken(String jwtToken);
+
     List<MarkDownUserModel> findByDisplayNameOrUsernameOrEmail(String username);
 
 }

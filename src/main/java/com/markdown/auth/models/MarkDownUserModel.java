@@ -13,23 +13,23 @@ import java.util.List;
 //because we extend the generic class
 @EqualsAndHashCode(callSuper = true)
 @Document(collection = "users")
-public class MarkDownUserModel extends GenericModel{
+public class MarkDownUserModel extends GenericModel {
 
     //set unique fields
-    @Indexed(direction = IndexDirection.DESCENDING, unique =true)
+    @Indexed(direction = IndexDirection.DESCENDING, unique = true)
     private String username;
 
-    @Indexed(direction = IndexDirection.DESCENDING, unique =true)
+    @Indexed(direction = IndexDirection.DESCENDING, unique = true)
     private String displayName;
 
-    @Indexed(direction = IndexDirection.DESCENDING, unique =true)
+    @Indexed(direction = IndexDirection.DESCENDING, unique = true)
     private String email;
 
     private String jwtToken;
     private String password;
     private List<String> roles;
 
-    public MarkDownUserModel(){
+    public MarkDownUserModel() {
         super();
     }
 }

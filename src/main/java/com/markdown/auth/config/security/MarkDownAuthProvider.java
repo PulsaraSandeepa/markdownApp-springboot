@@ -28,7 +28,6 @@ public class MarkDownAuthProvider extends AbstractUserDetailsAuthenticationProvi
     TokenService tokenService;
 
 
-
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 
@@ -39,19 +38,19 @@ public class MarkDownAuthProvider extends AbstractUserDetailsAuthenticationProvi
 
         final String token = (String) authentication.getCredentials();//jwt token
 
-        if(isEmpty(token)){
-            return new User(username,"",AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS"));
+        if (isEmpty(token)) {
+            return new User(username, "", AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS"));
         }
         //find the user based on the token
         Optional<MarkDownUserModel> markDownUserModelOptional = userDAO.findByJwtToken(token);
 
-        if(markDownUserModelOptional.isPresent()){
+        if (markDownUserModelOptional.isPresent()) {
 
             final MarkDownUserModel markDownUserModel = markDownUserModelOptional.get();
 
             try {
                 tokenService.validateToken(token);
-            }catch(InvalidTokenException e){
+            } catch (InvalidTokenException e) {
                 markDownUserModel.setJwtToken(null);
                 userDAO.save(markDownUserModel);
 
@@ -59,15 +58,15 @@ public class MarkDownAuthProvider extends AbstractUserDetailsAuthenticationProvi
             }
 
             return new User(username, "",
-            AuthorityUtils.createAuthorityList(
-                    markDownUserModel.getRoles().stream()
-                    .map(roleName -> "ROLE_"+ roleName)
-                    .toArray(String[]::new)
-            )
+                    AuthorityUtils.createAuthorityList(
+                            markDownUserModel.getRoles().stream()
+                                    .map(roleName -> "ROLE_" + roleName)
+                                    .toArray(String[]::new)
+                    )
             );
 
         }
 
-        throw new MarkDownTokenAuthException("User not found for token : "+token);
-        }
+        throw new MarkDownTokenAuthException("User not found for token : " + token);
+    }
 }

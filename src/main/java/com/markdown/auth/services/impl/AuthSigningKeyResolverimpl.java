@@ -24,8 +24,8 @@ public class AuthSigningKeyResolverimpl implements AuthSigningKeyResolver {
 
     @Override
     public SecretKey getSecretKey() {
-        if(isNull(secretKey)){
-            this.secretKey= Keys.hmacShaKeyFor(Base64.getEncoder().encode(this.secretKeyString.getBytes()));
+        if (isNull(secretKey)) {
+            this.secretKey = Keys.hmacShaKeyFor(Base64.getEncoder().encode(this.secretKeyString.getBytes()));
         }
 
         return this.secretKey;

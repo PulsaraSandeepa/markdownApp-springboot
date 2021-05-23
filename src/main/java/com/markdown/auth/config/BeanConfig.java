@@ -16,7 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class BeanConfig {
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
         final TypeMap<MarkDownUserModel, UserInfoDTO> markDownUserModelUserInfoDTOTypeMap = modelMapper.typeMap(MarkDownUserModel.class, UserInfoDTO.class);
@@ -27,12 +27,12 @@ public class BeanConfig {
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public CorsFilter corsFilter(){
+    public CorsFilter corsFilter() {
 
         UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
 
@@ -45,7 +45,7 @@ public class BeanConfig {
         config.addAllowedMethod(HttpMethod.DELETE);
         config.addAllowedMethod(HttpMethod.DELETE);
 
-        configSource.registerCorsConfiguration("/**",config);
+        configSource.registerCorsConfiguration("/**", config);
         return new CorsFilter(configSource);
 
     }

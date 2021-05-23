@@ -20,11 +20,11 @@ public class TokenController {
     private TokenService tokenService;
 
     @GetMapping("/validate")
-    public void validateToken(HttpServletRequest httpServletRequest) throws Exception{
+    public void validateToken(HttpServletRequest httpServletRequest) throws Exception {
 
         String authHeader = httpServletRequest.getHeader(AUTHORIZATION);
         String token = null;
-        if(!isEmpty(authHeader)){
+        if (!isEmpty(authHeader)) {
             token = authHeader.split("\\s")[1];
         }
 

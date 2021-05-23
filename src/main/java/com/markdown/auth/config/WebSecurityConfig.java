@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    public AuthFilter authFilter() throws Exception{
+    public AuthFilter authFilter() throws Exception {
         OrRequestMatcher orRequestMatcher = new OrRequestMatcher(
                 new AntPathRequestMatcher("/user/**"),
                 new AntPathRequestMatcher("/token/**"),

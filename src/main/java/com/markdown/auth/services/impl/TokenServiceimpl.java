@@ -20,12 +20,12 @@ public class TokenServiceimpl implements TokenService {
 
     @Override
     public void validateToken(String jwtToken) throws InvalidTokenException {
-        try{
-        Jwts.parserBuilder()
-                .setSigningKeyResolver(authSigningKeyResolver)
-                .build()
-                .parse(jwtToken);
-        }catch(ExpiredJwtException| MalformedJwtException| SignatureException| IllegalArgumentException e){
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKeyResolver(authSigningKeyResolver)
+                    .build()
+                    .parse(jwtToken);
+        } catch (ExpiredJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
             throw new InvalidTokenException("Invalid Token", e);
         }
     }
@@ -39,7 +39,8 @@ public class TokenServiceimpl implements TokenService {
         jwtToken = Jwts.builder()
                 .setSubject(markDownUserModel.getUsername())
                 .setAudience(markDownUserModel.getRoles().toString())
-                .signWith(authSigningKeyResolver.getSecretKey(),SignatureAlgorithm.HS512)
+                .setIssuer(markDownUserModel.getId())
+                .signWith(authSigningKeyResolver.getSecretKey(), SignatureAlgorithm.HS512)
                 .compact();
 
         markDownUserModel.setJwtToken(jwtToken);

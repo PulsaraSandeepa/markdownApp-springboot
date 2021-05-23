@@ -14,16 +14,16 @@ import java.util.Optional;
 @Service
 public class RoleServiceimpl implements RoleService {
 
-@Autowired
-RoleDAO roleDAO;
+    @Autowired
+    RoleDAO roleDAO;
 
-@Autowired
-ModelMapper modelMapper;
+    @Autowired
+    ModelMapper modelMapper;
 
     @Override
     public void createRole(RoleDTO roleDTO) {
 
-        MarkDownRoleModel markDownRoleModel = modelMapper.map(roleDTO,MarkDownRoleModel.class);
+        MarkDownRoleModel markDownRoleModel = modelMapper.map(roleDTO, MarkDownRoleModel.class);
 
         roleDAO.save(markDownRoleModel);
 
@@ -35,7 +35,7 @@ ModelMapper modelMapper;
 
         Optional<MarkDownRoleModel> markDownRoleModelOptional = roleDAO.findById(roleId);
 
-        if(markDownRoleModelOptional.isPresent()){
+        if (markDownRoleModelOptional.isPresent()) {
             final MarkDownRoleModel markDownRoleModel = markDownRoleModelOptional.get();
 
             return modelMapper.map(markDownRoleModel, RoleDTO.class);
